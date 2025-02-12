@@ -28,10 +28,13 @@ class Menu:
 
     def find_drink(self, order_name):
         """Searches the menu for a particular drink by name, returns it if it exists otherwise returns None"""
+        if order_name:
+            pass
         for item in self.menu:
             if item.name == order_name:
                 return item
         print("Sorry, that item does not exist.")
+        return None
 
 class CoffeeMaker:
     """Models the machine that makes the coffee"""
@@ -43,8 +46,6 @@ class CoffeeMaker:
             'coffee': 100,
         }
 
-        self.is_resource_sufficient('coffee')
-
     def report(self):
         """Prints a report of all resources"""
         # print(f'Water: {self.resources["water"]} ml')
@@ -52,7 +53,7 @@ class CoffeeMaker:
         # print(f'Coffee: {self.resources["coffee"]}g')
 
         for key, item in self.resources.items():
-            print(f'{key}: {item}ml' if key != "coffee" else f'{key}: {item}g')
+            print(f'{key}: {item}ml' if key != "" else f'{key}: {item}g')
 
     def is_resource_sufficient(self, drink):
         """Checks if you have enough resources for a drink to be made"""
@@ -65,7 +66,7 @@ class CoffeeMaker:
                     return False
             return True
 
-class Money_machiene:
+class MoneyMachiene:
     """Controls and manages the money"""
     CURRENCY = '$andre$'
     COINVALUES = {
@@ -85,6 +86,17 @@ class Money_machiene:
         """Print the profit"""
         print(f'Current profit: {self.profit}{self.CURRENCY}')
 
+    def ask_coins(self):
+        try:
+            quarters = float(input('How many quarters'))
+            dimes = float(input('How many dimes'))
+            nickels = float(input('How many nickels'))
+            pennies = float(input('How many pennies'))
+            return [quarters, dimes, nickels, pennies]
+        except ValueError:
+            print("error handling money. Try Again.")
+            self.ask_coins()
+
     def process_coins(self, quarters, dimes, nickels, pennies):
         """Processes money using quarters, dimes and nickels."""
         quarters_given = quarters * self.COINVALUES['quarter']
@@ -102,3 +114,6 @@ class Money_machiene:
             print('Insufficient funds.')
             return False
         return True
+
+if __name__ == '__main__':
+    print('eeeeeeeaaaaaaaaatyttzrdxctfgbhjkl')
